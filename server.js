@@ -190,8 +190,8 @@ wsServer.on('connection', (ws) => {
         ws.send(JSON.stringify({ action: 'botMessage', status: true, message }));
       }
     } else if (eventMessage.action === 'search') {
-      const { value } = eventMessage.data;
-      const regex = new RegExp(value, 'gmi');
+      const { phrase } = eventMessage.data;
+      const regex = new RegExp(phrase);
       console.log(regex)
       const findedMessages = [];
       user.messages.forEach((message) => {
