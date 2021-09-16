@@ -192,16 +192,12 @@ wsServer.on('connection', (ws) => {
     } else if (eventMessage.action === 'search') {
       const { phrase } = eventMessage.data;
       const regex = new RegExp(phrase);
-      console.log(regex)
       const findedMessages = [];
       user.messages.forEach((message) => {
-        console.log(regex.test(message.value), message)
         if (regex.test(message.value)) {
-          console.log('TRUE')
           findedMessages.push(message);
         }
       });
-      console.log('findedMessages', findedMessages)
       ws.send(JSON.stringify({ action: 'search', status: true, message: findedMessages }));
     } else if (eventMessage.action === 'file') {
       const { file, type, extension } = eventMessage.data;
